@@ -24,6 +24,14 @@ def create_app(test_config=None):
     except OSError:
         pass
 
+    @app.errorhandler(404)
+    def handle(e):
+        return f"HOOK ERROR: {e}", 404
+
+    @app.errorhandler(ZeroDivisionError)
+    def handle(e):
+        return f"zero dibison: ---->> {e} <<----", 500
+
     from . import db
     db.init_app(app)
 

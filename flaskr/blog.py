@@ -99,3 +99,12 @@ def delete(id):
     db.execute('DELETE FROM post WHERE id = ?', (id,))
     db.commit()
     return redirect(url_for('blog.index'))
+
+
+@bp.route('/division')
+def division():
+    try:
+        t = 1/0
+    except Exception as e:
+        print("Hook")
+    return "OK", 200
