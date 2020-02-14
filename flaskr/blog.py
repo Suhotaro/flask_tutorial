@@ -1,5 +1,5 @@
 from flask import (
-    Blueprint, flash, g, redirect, render_template, request, url_for
+    Blueprint, flash, g, redirect, render_template, request, url_for, current_app
 )
 from werkzeug.exceptions import abort
 
@@ -107,4 +107,7 @@ def division():
         t = 1/0
     except Exception as e:
         print("Hook")
+    current_app.logger.info("Division")
+    current_app.logger.error("Error")
+    current_app.logger.warning("Warning")
     return "OK", 200
